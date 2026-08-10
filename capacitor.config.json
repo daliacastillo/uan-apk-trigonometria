@@ -1,0 +1,8 @@
+{
+  "appId": "mx.uan.trigonometria",
+  "appName": "Trigonometría UAN",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  }
+}

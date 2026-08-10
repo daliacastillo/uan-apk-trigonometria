@@ -1,0 +1,1324 @@
+---
+title: "Antología — Trigonometría CBIMAT-211"
+subtitle: "Licenciatura en Matemáticas, Plan 2024"
+author: "Dra. Dalia Imelda Castillo Márquez"
+date: "2026"
+output:
+  pdf_document:
+    toc: true
+    toc_depth: 3
+    number_sections: true
+    latex_engine: xelatex
+    keep_tex: false
+header-includes:
+  - \usepackage{amsmath, amssymb, amsthm}
+  - \usepackage{booktabs, array, longtable, multirow}
+  - \usepackage{xcolor}
+  - \usepackage{mdframed}
+  - \usepackage{geometry}
+  - \usepackage{fancyhdr}
+  - \usepackage{fontspec}
+  - \usepackage{titling}
+  - \usepackage{enumitem}
+  - \usepackage{colortbl}
+  - \usepackage{caption}
+  - \geometry{a4paper, top=2.5cm, bottom=2.5cm, left=2.8cm, right=2.8cm}
+  - \definecolor{azulUAN}{HTML}{2E5FA3}
+  - \definecolor{azulOscuro}{HTML}{1F3864}
+  - \definecolor{ambar}{HTML}{C07A00}
+  - \definecolor{fondoazul}{HTML}{EBF3FB}
+  - \definecolor{fondoambar}{HTML}{FFF8E7}
+  - \definecolor{grisclaro}{HTML}{F5F5F5}
+  - \newcommand{\sen}{\mathrm{sen}}
+  - \newcommand{\tg}{\mathrm{tan}}
+  - \newcommand{\arcsen}{\mathrm{arcsen}}
+  - \newcommand{\arccot}{\mathrm{arccot}}
+  - \newcommand{\R}{\mathbb{R}}
+  - \newcommand{\Z}{\mathbb{Z}}
+  - >
+    \mdfdefinestyle{defstyle}{%
+      backgroundcolor=fondoazul,
+      linecolor=azulUAN,
+      linewidth=2pt,
+      topline=true, bottomline=true,
+      leftline=true, rightline=true,
+      innertopmargin=8pt, innerbottommargin=8pt,
+      innerleftmargin=10pt, innerrightmargin=10pt,
+      skipabove=8pt, skipbelow=8pt}
+  - >
+    \mdfdefinestyle{thmstyle}{%
+      backgroundcolor=fondoambar,
+      linecolor=ambar,
+      linewidth=2pt,
+      topline=true, bottomline=true,
+      leftline=true, rightline=true,
+      innertopmargin=8pt, innerbottommargin=8pt,
+      innerleftmargin=10pt, innerrightmargin=10pt,
+      skipabove=8pt, skipbelow=8pt}
+  - >
+    \mdfdefinestyle{ejstyle}{%
+      backgroundcolor=grisclaro,
+      linecolor=azulUAN,
+      linewidth=1pt,
+      topline=false, bottomline=false,
+      leftline=true, rightline=false,
+      innertopmargin=6pt, innerbottommargin=6pt,
+      innerleftmargin=12pt, innerrightmargin=6pt,
+      skipabove=6pt, skipbelow=4pt}
+  - \pagestyle{fancy}
+  - \fancyhf{}
+  - \fancyhead[L]{\small\color{azulUAN} Antología de Trigonometría — CBIMAT-211}
+  - \fancyhead[R]{\small\color{azulUAN} UAN}
+  - \fancyfoot[C]{\small\thepage}
+  - \renewcommand{\headrulewidth}{0.4pt}
+  - \setlength{\headheight}{14pt}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo      = TRUE,
+  warning   = FALSE,
+  message   = FALSE,
+  fig.align = "center",
+  out.width = "90%"
+)
+library(ggplot2)
+library(knitr)
+library(kableExtra)
+library(dplyr)
+```
+
+\newpage
+
+# UNIDAD 1. Elementos básicos de la trigonometría
+
+## Antecedentes
+
+Para abordar esta unidad el estudiante debe tener dominio de los siguientes temas del nivel bachillerato:
+
+a) Operaciones con números reales, fracciones y potencias.
+b) Geometría básica: puntos, rectas y planos como entes geométricos. Conceptos de paralelismo y perpendicularidad.
+c) Perímetro y área de figuras planas: triángulo ($A = bh/2$), cuadrado ($A = l^2$) y círculo ($A = \pi r^2$).
+d) Teorema de Pitágoras: en un triángulo rectángulo con hipotenusa $c$ y catetos $a$, $b$, se cumple $a^2 + b^2 = c^2$.
+e) Semejanza de triángulos: garantiza que las razones trigonométricas dependen solo del ángulo, no del tamaño del triángulo.
+f) Concepto de función, dominio y rango; notación $f(x)$.
+
+## Reseña histórica
+
+La trigonometría tiene sus raíces en las civilizaciones de Babilonia y el antiguo Egipto, donde agrimensores y astrónomos necesitaban calcular distancias y ángulos inaccesibles. Las tablas babilónicas (ca.\ 1800 a.C.) ya contenían relaciones entre lados de triángulos rectángulos.
+
+En Grecia, **Hiparco de Nicea** (190–120 a.C.) es considerado el fundador de la trigonometría como disciplina matemática: elaboró las primeras tablas de cuerdas para uso astronómico. **Ptolomeo** (ca.\ 100–170 d.C.) sistematizó este conocimiento en el *Almagesto*.
+
+Los matemáticos indios del siglo V d.C., especialmente **Āryabhaṭa**, introdujeron el seno como semi-cuerda. Los astrónomos árabes, como **Al-Battānī** (858–929 d.C.), introdujeron la tangente. **Regiomontano** (1436–1476) publicó *De triangulis omnimodis*, el primer tratado sistemático independiente de la astronomía. Finalmente, **Euler** (1707–1783) estableció la notación moderna con la fórmula $e^{ix} = \cos x + i\,\sen x$.
+
+## Desarrollo temático
+
+### Introducción a la trigonometría
+
+\begin{mdframed}[style=defstyle]
+\textbf{Nota: Definición — Trigonometría.}
+La trigonometría es la rama de las matemáticas que estudia las relaciones entre los ángulos y los lados de los triángulos, así como las propiedades de las funciones que surgen de dichas relaciones. La palabra proviene del griego $\tau\rho\acute{\iota}\gamma\omega\nu o\nu$ (triángulo) y $\mu\acute{\varepsilon}\tau\rho o\nu$ (medida).
+\end{mdframed}
+
+La trigonometría surge de la necesidad práctica de medir distancias y ángulos inaccesibles. Su herramienta central es la relación entre los ángulos de un triángulo y las proporciones de sus lados, que resultan constantes independientemente del tamaño del triángulo.
+
+**Aplicaciones:** física (ondas, óptica), ingeniería civil (topografía), ingeniería eléctrica (señales alternas), astronomía, arquitectura y análisis matemático avanzado.
+
+### Punto, recta y plano
+
+\begin{mdframed}[style=defstyle]
+\textbf{Nota: Definición — Entes geométricos.}
+Un \textbf{punto} es un ente geométrico sin dimensión; indica únicamente posición. Una \textbf{recta} es un conjunto infinito de puntos en una sola dirección. Un \textbf{plano} es un conjunto infinito de puntos que se extiende en dos dimensiones.
+\end{mdframed}
+
+Una **recta dirigida** tiene un sentido positivo y un punto de origen establecidos. Un **segmento** es la parte de la recta entre dos extremos. Una **semirrecta** (rayo) es la parte que queda a un lado de su origen, extendiéndose indefinidamente.
+
+### Clasificación de ángulos
+
+\begin{mdframed}[style=defstyle]
+\textbf{Nota: Definición — Ángulo.}
+Un ángulo es la figura formada por dos semirrectas (\emph{lados}) que comparten un mismo origen (\emph{vértice}). Su medida cuantifica la apertura entre los dos lados.
+\end{mdframed}
+
+| Tipo | Condición |
+|------|-----------|
+| Agudo | $0° < \alpha < 90°$ |
+| Recto | $\alpha = 90°$ |
+| Obtuso | $90° < \alpha < 180°$ |
+| Llano | $\alpha = 180°$ |
+| Reflejo | $180° < \alpha < 360°$ |
+| Completo | $\alpha = 360°$ |
+
+\begin{mdframed}[style=defstyle]
+\textbf{Nota: Definición — Ángulos complementarios y suplementarios.}
+Dos ángulos son \textbf{complementarios} si su suma es $90°$. Son \textbf{suplementarios} si su suma es $180°$. Son \textbf{adyacentes} si comparten vértice y un lado sin superponerse.
+\end{mdframed}
+
+### Medición angular
+
+#### Sistema sexagesimal
+
+\begin{mdframed}[style=defstyle]
+\textbf{Nota: Definición — Grado sexagesimal.}
+El grado ($°$) es la unidad equivalente a la $\frac{1}{360}$ parte de una vuelta completa. Cada grado se divide en 60 minutos ($'$) y cada minuto en 60 segundos ($''$).
+\end{mdframed}
+
+**Conversión a forma decimal:** $47°\,30'\,18'' = 47 + \frac{30}{60} + \frac{18}{3600} = 47.505°$
+
+#### Sistema radial
+
+\begin{mdframed}[style=defstyle]
+\textbf{Nota: Definición — Radián.}
+El radián (rad) es la medida del ángulo central que subtiende un arco de longitud igual al radio en una circunferencia de radio $r$. Se cumple: $1\,\text{rad} = \frac{180°}{\pi} \approx 57.296°$ y una vuelta completa equivale a $2\pi$ rad.
+\end{mdframed}
+
+\begin{mdframed}[style=thmstyle]
+\textbf{Nota: Teorema — Conversión grados--radianes.}
+$$\alpha[\text{rad}] = \alpha[°] \times \frac{\pi}{180}, \qquad \alpha[°] = \alpha[\text{rad}] \times \frac{180}{\pi}$$
+\end{mdframed}
+
+```{r tabla-angulos, echo=TRUE}
+angulos <- data.frame(
+  `Grados`  = c("0°","30°","45°","60°","90°","120°","135°","150°","180°"),
+  `Radianes` = c("0", "π/6","π/4","π/3","π/2","2π/3","3π/4","5π/6","π"),
+  `sen`      = c("0","1/2","√2/2","√3/2","1","√3/2","√2/2","1/2","0"),
+  `cos`      = c("1","√3/2","√2/2","1/2","0","−1/2","−√2/2","−√3/2","−1"),
+  `tan`      = c("0","√3/3","1","√3","indef.","−√3","−1","−√3/3","0"),
+  check.names = FALSE
+)
+
+kable(angulos, booktabs = TRUE, align = "c",
+      caption = "Valores exactos de funciones trigonométricas en ángulos notables (0° a 180°)") |>
+  kable_styling(latex_options = c("striped","hold_position"), font_size = 9) |>
+  row_spec(0, bold = TRUE, color = "white", background = "#2E5FA3")
+```
+
+#### Familias de ángulos
+
+\begin{mdframed}[style=defstyle]
+\textbf{Nota: Definición — Ángulos coterminales.}
+Dos ángulos son \textbf{coterminales} si, en posición normal, comparten el mismo lado terminal. Se obtienen sumando o restando múltiplos enteros de $360°$ (o $2\pi$ rad):
+$$\alpha \text{ y } \alpha \pm 360° \cdot n, \quad n \in \Z$$
+\end{mdframed}
+
+Un ángulo está en **posición normal** si su vértice está en el origen y su lado inicial sobre el semieje $x$ positivo. Los ángulos positivos se generan con giro antihorario; los negativos, con giro horario.
+
+### El círculo unitario
+
+\begin{mdframed}[style=defstyle]
+\textbf{Nota: Definición — Círculo unitario.}
+El círculo unitario es la circunferencia de radio 1 centrada en el origen: $x^2 + y^2 = 1$. Todo punto $P = (x, y)$ sobre él está asociado a un ángulo $\theta$ mediante $x = \cos\theta$ e $y = \sen\theta$.
+\end{mdframed}
+
+```{r circulo-unitario, fig.cap="Círculo unitario con ángulos notables y coordenadas $(\\cos\\theta,\\,\\sen\\theta)$ en los cuatro cuadrantes.", fig.width=6, fig.height=6}
+theta_notable <- c(0, 30, 45, 60, 90, 120, 135, 150,
+                   180, 210, 225, 240, 270, 300, 315, 330)
+rad <- theta_notable * pi / 180
+labels_ang <- c("0°","30°","45°","60°","90°","120°","135°","150°",
+                "180°","210°","225°","240°","270°","300°","315°","330°")
+cuadrante_col <- c(rep("#2E5FA3",4),"#2E5FA3",
+                   rep("#C07A00",4),
+                   rep("#555555",4),
+                   rep("#7B4F9E",3))
+
+# Fondo por cuadrante
+q1 <- data.frame(x=c(0,cos(seq(0,pi/2,0.01)),0), y=c(0,sin(seq(0,pi/2,0.01)),0))
+q2 <- data.frame(x=c(0,cos(seq(pi/2,pi,0.01)),0), y=c(0,sin(seq(pi/2,pi,0.01)),0))
+q3 <- data.frame(x=c(0,cos(seq(pi,3*pi/2,0.01)),0), y=c(0,sin(seq(pi,3*pi/2,0.01)),0))
+q4 <- data.frame(x=c(0,cos(seq(3*pi/2,2*pi,0.01)),0), y=c(0,sin(seq(3*pi/2,2*pi,0.01)),0))
+
+# Círculo
+circ <- data.frame(x=cos(seq(0,2*pi,0.01)), y=sin(seq(0,2*pi,0.01)))
+pts  <- data.frame(x=cos(rad), y=sin(rad), label=labels_ang,
+                   col=cuadrante_col)
+
+ggplot() +
+  geom_polygon(data=q1, aes(x,y), fill="#EBF3FB", alpha=0.5) +
+  geom_polygon(data=q2, aes(x,y), fill="#FFF8E7", alpha=0.5) +
+  geom_polygon(data=q3, aes(x,y), fill="#F0F0F0", alpha=0.5) +
+  geom_polygon(data=q4, aes(x,y), fill="#F5F0FF", alpha=0.5) +
+  geom_path(data=circ, aes(x,y), color="#2E5FA3", linewidth=1) +
+  geom_hline(yintercept=0, color="grey30", linewidth=0.5) +
+  geom_vline(xintercept=0, color="grey30", linewidth=0.5) +
+  geom_segment(data=pts, aes(x=0,y=0,xend=x,yend=y),
+               color="grey70", linewidth=0.4) +
+  geom_point(data=pts, aes(x,y), color=pts$col, size=3) +
+  geom_text(data=pts, aes(x*1.22, y*1.22, label=label),
+            size=2.6, color=pts$col, fontface="bold") +
+  annotate("text", x=0.6, y=0.6, label="Q I",  color="#2E5FA3", size=4, fontface="bold") +
+  annotate("text", x=-0.6,y=0.6, label="Q II", color="#C07A00", size=4, fontface="bold") +
+  annotate("text", x=-0.6,y=-0.6,label="Q III",color="#555555", size=4, fontface="bold") +
+  annotate("text", x=0.6, y=-0.6,label="Q IV", color="#7B4F9E", size=4, fontface="bold") +
+  coord_equal(xlim=c(-1.55,1.55), ylim=c(-1.55,1.55)) +
+  labs(x=NULL, y=NULL) +
+  theme_minimal(base_size=10) +
+  theme(panel.grid=element_blank(),
+        axis.text=element_blank(),
+        axis.ticks=element_blank())
+```
+
+\begin{mdframed}[style=defstyle]
+\textbf{Nota: Definición — Longitud de arco y área de sector circular.}
+Para un círculo de radio $r$ y ángulo central $\theta$ \emph{en radianes}:
+$$L = r\,\theta \qquad \text{y} \qquad A = \frac{r^2\,\theta}{2}$$
+\end{mdframed}
+
+**Ejemplo:** un ventilador con aspas de 50 cm que gira 120° describe un arco de $L = 0.50 \times \frac{2\pi}{3} = \frac{\pi}{3} \approx 1.047$ m.
+
+## Ejercicios resueltos
+
+\begin{mdframed}[style=ejstyle]
+\textbf{Ejercicio resuelto 1.} Convierte $135°$ al sistema radial.
+
+\textit{Paso 1:} Aplicar la fórmula: $\alpha[\text{rad}] = 135 \times \dfrac{\pi}{180}$.
+
+\textit{Paso 2:} Simplificar: $\dfrac{135\pi}{180} = \dfrac{3\pi}{4}$.
+
+\textit{Resultado:} $135° = \dfrac{3\pi}{4}\ \text{rad} \approx 2.356\ \text{rad}$.
+\end{mdframed}
+
+\begin{mdframed}[style=ejstyle]
+\textbf{Ejercicio resuelto 2.} Convierte $\dfrac{5\pi}{6}$ rad a grados.
+
+\textit{Paso 1:} $\alpha[°] = \dfrac{5\pi}{6} \times \dfrac{180}{\pi} = 5 \times 30 = 150$.
+
+\textit{Resultado:} $\dfrac{5\pi}{6}\ \text{rad} = 150°$.
+\end{mdframed}
+
+\begin{mdframed}[style=ejstyle]
+\textbf{Ejercicio resuelto 3.} Expresa $47°\,30'\,18''$ en forma decimal y en radianes.
+
+\textit{Paso 1:} $30'/60 = 0.5°$; $18''/3600 = 0.005°$.
+
+\textit{Paso 2:} Forma decimal: $47 + 0.5 + 0.005 = 47.505°$.
+
+\textit{Paso 3:} A radianes: $47.505 \times \dfrac{\pi}{180} \approx 0.8294\ \text{rad}$.
+\end{mdframed}
+
+\begin{mdframed}[style=ejstyle]
+\textbf{Ejercicio resuelto 4.} Encuentra ángulos coterminales de $40°$ (uno positivo y uno negativo).
+
+\textit{Paso 1:} Positivo: $40° + 360° = 400°$.
+
+\textit{Paso 2:} Negativo: $40° - 360° = -320°$.
+
+\textit{Verificación:} $400° - 360° = 40°\ \checkmark$ y $-320° + 360° = 40°\ \checkmark$.
+\end{mdframed}
+
+\begin{mdframed}[style=ejstyle]
+\textbf{Ejercicio resuelto 5.} Calcula la longitud del arco y el área del sector para $\theta = \dfrac{2\pi}{3}$ rad y $r = 6$ cm.
+
+\textit{Paso 1:} $L = r\theta = 6 \times \dfrac{2\pi}{3} = 4\pi \approx 12.566\ \text{cm}$.
+
+\textit{Paso 2:} $A = \dfrac{r^2\theta}{2} = \dfrac{36 \cdot \frac{2\pi}{3}}{2} = 12\pi \approx 37.699\ \text{cm}^2$.
+\end{mdframed}
+
+\begin{mdframed}[style=ejstyle]
+\textbf{Ejercicio resuelto 6.} Determina el cuadrante y ángulo de referencia de $\theta = -250°$.
+
+\textit{Paso 1:} Coterminal positivo: $-250° + 360° = 110°$.
+
+\textit{Paso 2:} $90° < 110° < 180°$ → cuadrante II.
+
+\textit{Paso 3:} Ángulo de referencia: $180° - 110° = 70°$.
+\end{mdframed}
+
+\begin{mdframed}[style=ejstyle]
+\textbf{Ejercicio resuelto 7.} La manecilla minutera de un reloj mide 15 cm. Calcula el arco y el área barridos en 40 minutos.
+
+\textit{Paso 1:} 40 minutos $= \dfrac{2}{3}$ de vuelta $\Rightarrow \theta = \dfrac{4\pi}{3}\ \text{rad}$.
+
+\textit{Paso 2:} $L = 15 \times \dfrac{4\pi}{3} = 20\pi \approx 62.83\ \text{cm}$.
+
+\textit{Paso 3:} $A = \dfrac{225 \cdot \frac{4\pi}{3}}{2} = 150\pi \approx 471.24\ \text{cm}^2$.
+\end{mdframed}
+
+\begin{mdframed}[style=ejstyle]
+\textbf{Ejercicio resuelto 8.} Convierte 3 radianes a grados, minutos y segundos.
+
+\textit{Paso 1:} $3 \times \dfrac{180}{\pi} \approx 171.887°$.
+
+\textit{Paso 2:} Parte entera: $171°$; decimal $0.887 \times 60 \approx 53.22'$.
+
+\textit{Paso 3:} $53'$; decimal $0.22 \times 60 \approx 13''$.
+
+\textit{Resultado:} $3\ \text{rad} \approx 171°\,53'\,13''$.
+\end{mdframed}
+
+## Ejercicios propuestos
+
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=4pt]
+\item Clasifica los ángulos: $25°,\ 90°,\ 145°,\ 180°,\ 270°,\ 315°$.
+\item Convierte a radianes: $60°,\ 120°,\ 240°,\ 330°$.
+\item Convierte a grados: $\dfrac{\pi}{3},\ \dfrac{7\pi}{6},\ \dfrac{11\pi}{4},\ \dfrac{3\pi}{2}$.
+\item Expresa en forma decimal: $52°\,45'\,36''$.
+\item Expresa en grados, minutos y segundos: $118.76°$.
+\item Determina dos ángulos coterminales (uno positivo y uno negativo) para: $75°,\ -50°,\ \dfrac{3\pi}{4}$.
+\item Indica el cuadrante del lado terminal de: $200°,\ -30°,\ \dfrac{5\pi}{4},\ \dfrac{11\pi}{6}$.
+\item Un sector circular tiene radio 8 cm y ángulo central de $120°$. Calcula la longitud del arco y el área del sector.
+\item La manecilla minutera de un reloj tiene 10 cm. ¿Qué longitud de arco recorre en 25 minutos?
+\item El arco de una circunferencia de radio 5 m mide 7 m. ¿Cuál es el ángulo central en grados y radianes?
+\item Una rueda de radio 40 cm gira a 120 rpm. Calcula: (a) la velocidad angular en rad/s, (b) la velocidad lineal del borde.
+\item ¿Cuántos radianes recorre el minutero de un reloj en 2 h 20 min?
+\item Dos ángulos suplementarios están en razón 2:7. Determina ambos ángulos en grados y radianes.
+\item \textbf{(Desafío)} Demuestra que si $\alpha$ y $\beta$ son coterminales, entonces $\alpha - \beta = 360° \cdot n$ para algún $n \in \Z$.
+\item \textbf{(Desafío)} Un aspersor cubre un sector de radio 12 m y ángulo 270°. ¿Cuántos m² riega? ¿Qué longitud de arco describe?
+\end{enumerate}
+
+\newpage
+
+# UNIDAD 2. Funciones trigonométricas
+
+## Antecedentes
+
+a) Unidad 1 completa: sistemas de medición angular, círculo unitario y ángulos coterminales.
+b) Concepto de función, dominio, rango y representación gráfica en el plano cartesiano.
+c) Teorema de Pitágoras y raíces exactas: $\sqrt{2} \approx 1.414$, $\sqrt{3} \approx 1.732$.
+d) Transformaciones de funciones: traslaciones, reflexiones y dilataciones.
+e) Ecuación de la circunferencia: $(x-h)^2 + (y-k)^2 = r^2$.
+
+## Reseña histórica
+
+**Āryabhaṭa** (476–550 d.C.) introdujo el *ardha-jyā* (semi-cuerda), que los árabes transcribieron como *jiba* y los traductores medievales latinizaron como *sinus*, origen de la palabra "seno". **Al-Battānī** (858–929 d.C.) definió la tangente como la "sombra extendida". **Abū al-Wafā'** (940–998 d.C.) compiló tablas de las seis funciones con gran precisión. **Euler** (1707–1783) integró las funciones trigonométricas al análisis matemático, estableciendo sus series de potencias y la relación $e^{ix} = \cos x + i\,\sen x$.
+
+## Desarrollo temático
+
+### Definición desde el círculo unitario
+
+\begin{mdframed}[style=defstyle]
+\textbf{Nota: Definición — Funciones trigonométricas.}
+Sea $\theta$ un ángulo en posición normal y $P = (x, y)$ el punto de intersección de su lado terminal con el círculo unitario. Se definen:
+$$\sen\theta = y,\quad \cos\theta = x,\quad \tan\theta = \frac{y}{x}\ (x \neq 0)$$
+$$\csc\theta = \frac{1}{y}\ (y \neq 0),\quad \sec\theta = \frac{1}{x}\ (x \neq 0),\quad \cot\theta = \frac{x}{y}\ (y \neq 0)$$
+\end{mdframed}
+
+```{r tabla-valores, echo=TRUE}
+vals <- data.frame(
+  theta    = c("0","π/6","π/4","π/3","π/2","π"),
+  sen      = c("0","1/2","√2/2","√3/2","1","0"),
+  cos      = c("1","√3/2","√2/2","1/2","0","−1"),
+  tan      = c("0","√3/3","1","√3","indef.","0"),
+  csc      = c("indef.","2","√2","2√3/3","1","indef."),
+  sec      = c("1","2√3/3","√2","2","indef.","−1"),
+  cot      = c("indef.","√3","1","√3/3","0","indef.")
+)
+names(vals)[1] <- "θ"
+
+kable(vals, booktabs=TRUE, align="c",
+      caption="Valores exactos de las seis funciones trigonométricas en ángulos notables") |>
+  kable_styling(latex_options=c("striped","hold_position"), font_size=9) |>
+  row_spec(0, bold=TRUE, color="white", background="#2E5FA3")
+```
+
+**Dominio y rango:** $\sen\theta$ y $\cos\theta$ tienen dominio $\R$ y rango $[-1,1]$. La tangente tiene dominio $\R \setminus \{\pi/2 + n\pi \mid n \in \Z\}$ y rango $\R$.
+
+### Propiedades y gráficas
+
+\begin{mdframed}[style=defstyle]
+\textbf{Nota: Definición — Periodicidad.}
+Una función $f$ es periódica si existe $T > 0$ tal que $f(x+T) = f(x)$ para todo $x$ en el dominio. El periodo mínimo de $\sen$ y $\cos$ es $2\pi$; el de $\tan$ y $\cot$ es $\pi$.
+\end{mdframed}
+
+\begin{mdframed}[style=defstyle]
+\textbf{Nota: Definición — Paridad.}
+$\cos(-x) = \cos x$ (función par: simétrica respecto al eje $y$).\\
+$\sen(-x) = -\sen x$ (función impar: simétrica respecto al origen).
+\end{mdframed}
+
+\begin{mdframed}[style=defstyle]
+\textbf{Nota: Definición — Forma general de seno y coseno.}
+$$y = A\,\sen(Bx + C) + D \qquad \text{y} \qquad y = A\,\cos(Bx + C) + D$$
+donde $|A|$ = amplitud, $T = 2\pi/|B|$ = periodo, $-C/B$ = desfasamiento horizontal, $D$ = desplazamiento vertical.
+\end{mdframed}
+
+```{r grafica-sencos, fig.cap="Gráficas de $y = \\sen x$ (azul) e $y = \\cos x$ (naranja) en $[-2\\pi, 2\\pi]$. Amplitud 1, periodo $2\\pi$.", fig.width=8, fig.height=3.5}
+x <- seq(-2*pi, 2*pi, length.out=500)
+df <- data.frame(
+  x    = rep(x, 2),
+  y    = c(sin(x), cos(x)),
+  func = rep(c("sen x","cos x"), each=length(x))
+)
+eje_x <- data.frame(
+  xend  = c(-2*pi,-3*pi/2,-pi,-pi/2,pi/2,pi,3*pi/2,2*pi),
+  label = c("-2π","-3π/2","-π","-π/2","π/2","π","3π/2","2π")
+)
+
+ggplot(df, aes(x, y, color=func)) +
+  geom_hline(yintercept=0, color="grey40", linewidth=0.4) +
+  geom_vline(xintercept=0, color="grey40", linewidth=0.4) +
+  geom_hline(yintercept=c(1,-1), linetype="dashed", color="grey70", linewidth=0.3) +
+  geom_line(linewidth=0.9) +
+  scale_color_manual(values=c("sen x"="#2E5FA3","cos x"="#C07A00"),
+                     name=NULL) +
+  scale_x_continuous(
+    breaks = c(-2*pi,-3*pi/2,-pi,-pi/2,0,pi/2,pi,3*pi/2,2*pi),
+    labels = c("-2π","-3π/2","-π","-π/2","0","π/2","π","3π/2","2π")
+  ) +
+  scale_y_continuous(breaks=c(-1,0,1)) +
+  labs(x=NULL, y=NULL) +
+  theme_minimal(base_size=10) +
+  theme(legend.position="top",
+        panel.grid.minor=element_blank(),
+        panel.grid.major=element_line(color="grey92"))
+```
+
+```{r grafica-tan, fig.cap="Gráfica de $y = \\tan x$ en $[-3\\pi/2,\\, 3\\pi/2]$ con asíntotas verticales (líneas rojas discontinuas).", fig.width=8, fig.height=4}
+# Build tan x avoiding discontinuities
+build_tan_branch <- function(a, b, n=300) {
+  xv <- seq(a + 0.01, b - 0.01, length.out=n)
+  data.frame(x=xv, y=tan(xv))
+}
+tan_df <- rbind(
+  build_tan_branch(-3*pi/2, -pi/2),
+  data.frame(x=NA, y=NA),
+  build_tan_branch(-pi/2, pi/2),
+  data.frame(x=NA, y=NA),
+  build_tan_branch(pi/2, 3*pi/2)
+)
+asint <- c(-3*pi/2, -pi/2, pi/2, 3*pi/2)
+
+ggplot(tan_df, aes(x,y)) +
+  geom_vline(xintercept=asint, color="#CC3333", linetype="dashed", linewidth=0.7) +
+  geom_hline(yintercept=0, color="grey40", linewidth=0.4) +
+  geom_vline(xintercept=0, color="grey40", linewidth=0.4) +
+  geom_line(color="#2E5FA3", linewidth=0.9, na.rm=FALSE) +
+  coord_cartesian(ylim=c(-4,4)) +
+  scale_x_continuous(
+    breaks = c(-3*pi/2,-pi,-pi/2,0,pi/2,pi,3*pi/2),
+    labels = c("-3π/2","-π","-π/2","0","π/2","π","3π/2")
+  ) +
+  labs(x=NULL, y=NULL) +
+  theme_minimal(base_size=10) +
+  theme(panel.grid.minor=element_blank(),
+        panel.grid.major=element_line(color="grey92"))
+```
+
+### Criterios de reducción
+
+\begin{mdframed}[style=thmstyle]
+\textbf{Nota: Teorema — Reducción al primer cuadrante.}
+Cualquier función trigonométrica en $\theta$ puede expresarse como $\pm f(\alpha)$, donde $\alpha$ es el \textbf{ángulo de referencia} (agudo) y el signo depende del cuadrante.\\[4pt]
+\textbf{Regla mnemotécnica (CSCA):} Q\,I: todos $+$;\quad Q\,II: solo $\sen$ y $\csc$ $+$;\quad Q\,III: solo $\tan$ y $\cot$ $+$;\quad Q\,IV: solo $\cos$ y $\sec$ $+$.
+\end{mdframed}
+
+\begin{mdframed}[style=thmstyle]
+\textbf{Nota: Teorema — Co-funciones.}
+$$\sen\!\left(\frac{\pi}{2} - \theta\right) = \cos\theta, \quad \cos\!\left(\frac{\pi}{2} - \theta\right) = \sen\theta, \quad \tan\!\left(\frac{\pi}{2} - \theta\right) = \cot\theta$$
+Con múltiplos impares de $\pi/2$ se intercambian co-funciones; con múltiplos pares se conserva el nombre.
+\end{mdframed}
+
+### Funciones en triángulos rectángulos
+
+\begin{mdframed}[style=defstyle]
+\textbf{Nota: Definición — Razones trigonométricas.}
+En un triángulo rectángulo con ángulo agudo $\theta$:
+$$\sen\theta = \frac{\text{cateto opuesto}}{\text{hipotenusa}}, \quad \cos\theta = \frac{\text{cateto adyacente}}{\text{hipotenusa}}, \quad \tan\theta = \frac{\text{cateto opuesto}}{\text{cateto adyacente}}$$
+\end{mdframed}
+
+Los **ángulos de elevación** (hacia un punto superior) y **depresión** (hacia un punto inferior) se miden desde la horizontal. Son fundamentales en topografía, arquitectura y navegación.
+
+### Funciones trigonométricas inversas
+
+\begin{mdframed}[style=defstyle]
+\textbf{Nota: Definición — Arcoseno, arcocoseno, arcotangente.}
+Para garantizar la invertibilidad se restringe el dominio:
+\begin{align*}
+\arcsen &: [-1,1] \to [-\pi/2,\,\pi/2]\\
+\arccos &: [-1,1] \to [0,\,\pi]\\
+\arctan &: \R \to (-\pi/2,\,\pi/2)
+\end{align*}
+\end{mdframed}
+
+\begin{mdframed}[style=thmstyle]
+\textbf{Nota: Teorema — Identidades de cancelación.}
+$$\sen(\arcsen x) = x\ \text{ para } x \in [-1,1]; \quad \arcsen(\sen x) = x\ \text{ para } x \in [-\pi/2,\pi/2]$$
+$$\cos(\arccos x) = x\ \text{ para } x \in [-1,1]; \quad \arccos(\cos x) = x\ \text{ para } x \in [0,\pi]$$
+$$\tan(\arctan x) = x\ \text{ para todo } x \in \R; \quad \arctan(\tan x) = x\ \text{ para } x \in (-\pi/2,\pi/2)$$
+\end{mdframed}
+
+## Ejercicios resueltos
+
+\begin{mdframed}[style=ejstyle]
+\textbf{Ejercicio resuelto 9.} Evalúa $\sen(7\pi/6)$, $\cos(7\pi/6)$ y $\tan(7\pi/6)$.
+
+\textit{Paso 1:} $\pi < 7\pi/6 < 3\pi/2$ → cuadrante III. En Q\,III: $\sen$ y $\cos$ negativos, $\tan$ positivo.
+
+\textit{Paso 2:} Ángulo de referencia: $7\pi/6 - \pi = \pi/6$.
+
+\textit{Paso 3:} $\sen(7\pi/6) = -1/2$;\quad $\cos(7\pi/6) = -\sqrt{3}/2$;\quad $\tan(7\pi/6) = \sqrt{3}/3$.
+\end{mdframed}
+
+\begin{mdframed}[style=ejstyle]
+\textbf{Ejercicio resuelto 10.} Identifica amplitud, periodo, fase y desplazamiento de $y = 3\sen(2x - \pi/3) + 1$.
+
+\textit{Paso 1:} Amplitud: $|A| = 3$.
+
+\textit{Paso 2:} Periodo: $T = 2\pi/2 = \pi$.
+
+\textit{Paso 3:} Fase: $-C/B = -(-\pi/3)/2 = \pi/6$ a la derecha.
+
+\textit{Paso 4:} Desplazamiento vertical: $D = 1$. La función oscila entre $-2$ y $4$.
+\end{mdframed}
+
+\begin{mdframed}[style=ejstyle]
+\textbf{Ejercicio resuelto 11.} Un poste proyecta una sombra de 12 m con ángulo de elevación solar de $35°$. Calcula la altura del poste.
+
+\textit{Paso 1:} $\tan(35°) = h/12$.
+
+\textit{Paso 2:} $h = 12\tan(35°) \approx 12 \times 0.7002 \approx 8.40$ m.
+\end{mdframed}
+
+\begin{mdframed}[style=ejstyle]
+\textbf{Ejercicio resuelto 12.} Calcula $\arcsen(-\sqrt{2}/2)$ y $\arccos(-1/2)$.
+
+\textit{Paso 1:} $\arcsen(-\sqrt{2}/2)$: buscar $\theta \in [-\pi/2,\pi/2]$ con $\sen\theta = -\sqrt{2}/2$. Como $\sen(-\pi/4) = -\sqrt{2}/2$: resultado $-\pi/4 = -45°$.
+
+\textit{Paso 2:} $\arccos(-1/2)$: buscar $\theta \in [0,\pi]$ con $\cos\theta = -1/2$. Como $\cos(2\pi/3) = -1/2$: resultado $2\pi/3 = 120°$.
+\end{mdframed}
+
+\begin{mdframed}[style=ejstyle]
+\textbf{Ejercicio resuelto 13.} Si $\cos\theta = -4/5$ y $\theta \in [\pi/2, \pi]$, evalúa las seis funciones.
+
+\textit{Paso 1:} $\sen^2\theta = 1 - 16/25 = 9/25$; en Q\,II: $\sen\theta = 3/5$.
+
+\textit{Paso 2:} $\tan\theta = (3/5)/(-4/5) = -3/4$; $\csc\theta = 5/3$; $\sec\theta = -5/4$; $\cot\theta = -4/3$.
+\end{mdframed}
+
+\begin{mdframed}[style=ejstyle]
+\textbf{Ejercicio resuelto 14.} Describe $y = -2\cos(\pi x) + 1$ en $[0,4]$.
+
+\textit{Paso 1:} $A = -2$ → amplitud 2, con reflexión (gráfica invertida).
+
+\textit{Paso 2:} $T = 2\pi/\pi = 2$; $D = 1$. Oscila entre $-1$ y $3$.
+
+\textit{Paso 3:} Puntos clave: $(0,-1)$, $(1,1)$, $(2,3)$, $(3,1)$, $(4,-1)$.
+\end{mdframed}
+
+\begin{mdframed}[style=ejstyle]
+\textbf{Ejercicio resuelto 15.} Demuestra que $\tan(\arctan x) = x$ para todo $x \in \R$.
+
+\textit{Paso 1:} Sea $\alpha = \arctan(x)$. Por definición, $\alpha \in (-\pi/2,\pi/2)$ y $\tan\alpha = x$.
+
+\textit{Paso 2:} Entonces $\tan(\arctan x) = \tan\alpha = x$. $\blacksquare$
+\end{mdframed}
+
+\begin{mdframed}[style=ejstyle]
+\textbf{Ejercicio resuelto 16.} Desde la cima de un faro de 80 m, el ángulo de depresión hacia un barco es $22°$. ¿A qué distancia horizontal está el barco?
+
+\textit{Paso 1:} $\tan(22°) = 80/d$.
+
+\textit{Paso 2:} $d = 80/\tan(22°) \approx 80/0.4040 \approx 198.0$ m.
+\end{mdframed}
+
+## Ejercicios propuestos
+
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=4pt, start=16]
+\item Evalúa las seis funciones trigonométricas en $\theta = 3\pi/4$.
+\item Determina el signo de $\sen\theta$, $\cos\theta$ y $\tan\theta$ para $\theta = -150°$.
+\item Encuentra el ángulo de referencia de: $210°$,\ $-45°$,\ $5\pi/3$.
+\item Identifica $A$, $T$, fase y $D$: $y = -4\sen(3x + \pi/6)$.
+\item Identifica $A$, $T$, fase y $D$: $y = \frac{1}{2}\cos(\pi x - 2) + 3$.
+\item Verifica algebraicamente que $\cos(-x) = \cos x$ usando la definición del círculo unitario.
+\item Un observador ve la cima de un edificio con ángulo de elevación $52°$ desde 45 m. ¿Cuál es la altura del edificio?
+\item Calcula: $\arctan(1)$, $\arccos(-1/2)$, $\arcsen(\sqrt{3}/2)$. Expresa en rad y en grados.
+\item Demuestra que $\sen(\arctan x) = x/\sqrt{1+x^2}$ para $x \in \R$.
+\item Grafica $y = \sen x$ e $y = \csc x$ en $[0,2\pi]$ e identifica las asíntotas de $\csc x$.
+\item Determina la ecuación de una función senoidal con amplitud 5, periodo $3\pi$ y que pasa por $(0,0)$ con pendiente positiva.
+\item Si $\sen\theta = 7/25$ y $\cos\theta < 0$, evalúa $\tan\theta$ y $\sec\theta$.
+\item ¿Para qué valores de $x \in [0,2\pi]$ se cumple $\cos x = \sen x$?
+\item \textbf{(Desafío)} Demuestra que $\arcsen x + \arccos x = \pi/2$ para todo $x \in [-1,1]$.
+\item \textbf{(Desafío)} Un satélite orbita a 600 km de altura (radio terrestre $\approx 6371$ km). Calcula el ángulo máximo de elevación desde el que puede verse y la longitud del arco de superficie terrestre visible.
+\end{enumerate}
+
+\newpage
+
+# UNIDAD 3. Identidades trigonométricas
+
+## Antecedentes
+
+a) Unidad 2 completa: las seis funciones trigonométricas y sus valores exactos.
+b) Álgebra: factorización (factor común, diferencia de cuadrados, trinomio), fracciones algebraicas y conjugados.
+c) Concepto de identidad algebraica (válida para todos los valores del dominio).
+d) Leyes de exponentes: $(a+b)^2 = a^2 + 2ab + b^2$, $(a-b)(a+b) = a^2 - b^2$.
+
+## Reseña histórica
+
+Las identidades trigonométricas surgieron de la necesidad de simplificar cálculos en astronomía. **Ptolomeo** (siglo II) formuló las primeras en términos de cuerdas. **Abū al-Wafā'** (siglo X) sistematizó las relaciones entre las seis funciones. **Viète** (1540–1603) desarrolló fórmulas para ángulos múltiples. **Newton** y **Leibniz** las usaron en las series de Taylor. **Euler** las unificó con la fórmula exponencial compleja, base hoy del análisis de Fourier y la integración trigonométrica.
+
+## Desarrollo temático
+
+### Identidades fundamentales
+
+\begin{mdframed}[style=thmstyle]
+\textbf{Nota: Teorema — Identidades de reciprocidad.}
+$$\csc\theta = \frac{1}{\sen\theta}, \qquad \sec\theta = \frac{1}{\cos\theta}, \qquad \cot\theta = \frac{1}{\tan\theta}$$
+\end{mdframed}
+
+\begin{mdframed}[style=thmstyle]
+\textbf{Nota: Teorema — Identidades de cociente.}
+$$\tan\theta = \frac{\sen\theta}{\cos\theta}, \qquad \cot\theta = \frac{\cos\theta}{\sen\theta}$$
+\end{mdframed}
+
+\begin{mdframed}[style=thmstyle]
+\textbf{Nota: Teorema — Identidades pitagóricas.}
+\begin{align}
+\sen^2\theta + \cos^2\theta &= 1 \label{eq:pit1}\\
+1 + \tan^2\theta &= \sec^2\theta \label{eq:pit2}\\
+1 + \cot^2\theta &= \csc^2\theta \label{eq:pit3}
+\end{align}
+\emph{Demostración de \eqref{eq:pit1}:} $P = (\cos\theta,\,\sen\theta)$ pertenece a $x^2 + y^2 = 1$. $\blacksquare$\\
+\eqref{eq:pit2} se obtiene dividiendo \eqref{eq:pit1} entre $\cos^2\theta$; \eqref{eq:pit3}, entre $\sen^2\theta$.
+\end{mdframed}
+
+### Demostración de identidades: estrategias
+
+1. Trabajar **solo en un lado** (preferentemente el más complejo).
+2. Expresar todo en términos de $\sen$ y $\cos$.
+3. Factorizar expresiones cuando sea posible.
+4. Multiplicar por el **conjugado** cuando el denominador sea $1 \pm \sen\theta$ o $1 \pm \cos\theta$.
+5. Sustituir expresiones cuadráticas con las identidades pitagóricas.
+
+### Identidades de suma y diferencia
+
+\begin{mdframed}[style=thmstyle]
+\textbf{Nota: Teorema — Suma y diferencia de ángulos.}
+\begin{align*}
+\sen(A \pm B) &= \sen A\cos B \pm \cos A\sen B\\
+\cos(A \pm B) &= \cos A\cos B \mp \sen A\sen B\\
+\tan(A \pm B) &= \frac{\tan A \pm \tan B}{1 \mp \tan A\cdot\tan B}
+\end{align*}
+\end{mdframed}
+
+### Identidades de ángulo doble
+
+\begin{mdframed}[style=thmstyle]
+\textbf{Nota: Teorema — Ángulo doble.}
+\begin{align*}
+\sen(2A) &= 2\sen A\cos A\\
+\cos(2A) &= \cos^2 A - \sen^2 A = 2\cos^2 A - 1 = 1 - 2\sen^2 A\\
+\tan(2A) &= \frac{2\tan A}{1 - \tan^2 A}
+\end{align*}
+\end{mdframed}
+
+### Identidades de ángulo mitad
+
+\begin{mdframed}[style=thmstyle]
+\textbf{Nota: Teorema — Ángulo mitad.}
+$$\sen\!\left(\frac{A}{2}\right) = \pm\sqrt{\frac{1-\cos A}{2}}, \quad \cos\!\left(\frac{A}{2}\right) = \pm\sqrt{\frac{1+\cos A}{2}}$$
+$$\tan\!\left(\frac{A}{2}\right) = \frac{1-\cos A}{\sen A} = \frac{\sen A}{1+\cos A}$$
+El signo de $\sen(A/2)$ y $\cos(A/2)$ depende del cuadrante de $A/2$.
+\end{mdframed}
+
+### Identidades de producto a suma y suma a producto
+
+\begin{mdframed}[style=thmstyle]
+\textbf{Nota: Teorema — Producto a suma.}
+\begin{align*}
+2\sen A\cos B &= \sen(A+B) + \sen(A-B)\\
+2\cos A\cos B &= \cos(A-B) + \cos(A+B)\\
+2\sen A\sen B &= \cos(A-B) - \cos(A+B)\\
+2\cos A\sen B &= \sen(A+B) - \sen(A-B)
+\end{align*}
+\end{mdframed}
+
+\begin{mdframed}[style=thmstyle]
+\textbf{Nota: Teorema — Suma a producto.}
+\begin{align*}
+\sen P + \sen Q &= 2\sen\!\frac{P+Q}{2}\cos\!\frac{P-Q}{2}\\
+\sen P - \sen Q &= 2\cos\!\frac{P+Q}{2}\sen\!\frac{P-Q}{2}\\
+\cos P + \cos Q &= 2\cos\!\frac{P+Q}{2}\cos\!\frac{P-Q}{2}\\
+\cos P - \cos Q &= -2\sen\!\frac{P+Q}{2}\sen\!\frac{P-Q}{2}
+\end{align*}
+\end{mdframed}
+
+### Solución de triángulos oblicuángulos
+
+\begin{mdframed}[style=thmstyle]
+\textbf{Nota: Teorema — Ley de Senos.}
+En todo triángulo con lados $a, b, c$ opuestos a los ángulos $A, B, C$:
+$$\frac{a}{\sen A} = \frac{b}{\sen B} = \frac{c}{\sen C}$$
+Se aplica cuando se conocen: (1) dos ángulos y un lado; (2) dos lados y el ángulo opuesto a uno de ellos.
+\end{mdframed}
+
+\begin{mdframed}[style=thmstyle]
+\textbf{Nota: Teorema — Ley de Cosenos.}
+$$a^2 = b^2 + c^2 - 2bc\cos A, \quad b^2 = a^2 + c^2 - 2ac\cos B, \quad c^2 = a^2 + b^2 - 2ab\cos C$$
+Generalización del Teorema de Pitágoras. Se aplica cuando se conocen: (1) tres lados; (2) dos lados y el ángulo entre ellos.
+\end{mdframed}
+
+\begin{mdframed}[style=thmstyle]
+\textbf{Nota: Teorema — Fórmula de Herón.}
+$$\text{Área} = \sqrt{s(s-a)(s-b)(s-c)}, \qquad s = \frac{a+b+c}{2}$$
+\end{mdframed}
+
+```{r triangulo-plot, fig.cap="Triángulo oblicuángulo con lados $a, b, c$ y ángulos $A, B, C$. Ilustración de la Ley de Senos y Ley de Cosenos.", fig.width=5.5, fig.height=4}
+# Vertices of an example triangle
+Ax <- 0.5; Ay <- 0.2
+Bx <- 4.5; By <- 0.2
+Cx <- 1.8; Cy <- 3.5
+
+tri <- data.frame(
+  x = c(Ax, Bx, Cx, Ax),
+  y = c(Ay, By, Cy, Ay)
+)
+ggplot(tri, aes(x,y)) +
+  geom_polygon(fill="#EBF3FB", color="#2E5FA3", linewidth=1.2) +
+  annotate("text", x=(Bx+Cx)/2+0.25, y=(By+Cy)/2, label="a", size=5,
+           color="#C07A00", fontface="bold") +
+  annotate("text", x=(Ax+Cx)/2-0.25, y=(Ay+Cy)/2, label="b", size=5,
+           color="#C07A00", fontface="bold") +
+  annotate("text", x=(Ax+Bx)/2, y=Ay-0.2, label="c", size=5,
+           color="#C07A00", fontface="bold") +
+  annotate("text", x=Ax-0.25, y=Ay-0.1, label="A", size=5,
+           color="#2E5FA3", fontface="bold") +
+  annotate("text", x=Bx+0.25, y=By-0.1, label="B", size=5,
+           color="#2E5FA3", fontface="bold") +
+  annotate("text", x=Cx, y=Cy+0.25, label="C", size=5,
+           color="#2E5FA3", fontface="bold") +
+  coord_equal(xlim=c(-0.5,5.5), ylim=c(-0.5,4.2)) +
+  theme_void()
+```
+
+## Ejercicios resueltos
+
+\begin{mdframed}[style=ejstyle]
+\textbf{Ejercicio resuelto 17.} Demuestra: $(\sen\theta + \cos\theta)^2 = 1 + 2\sen\theta\cos\theta$.
+
+\textit{Paso 1:} Expandir: $\sen^2\theta + 2\sen\theta\cos\theta + \cos^2\theta$.
+
+\textit{Paso 2:} Aplicar identidad pitagónica: $\sen^2\theta + \cos^2\theta = 1$.
+
+\textit{Paso 3:} Resultado: $1 + 2\sen\theta\cos\theta$. $\blacksquare$
+\end{mdframed}
+
+\begin{mdframed}[style=ejstyle]
+\textbf{Ejercicio resuelto 18.} Calcula $\sen(75°)$ exactamente.
+
+\textit{Paso 1:} $75° = 45° + 30°$.
+
+\textit{Paso 2:} $\sen(75°) = \sen 45°\cos 30° + \cos 45°\sen 30° = \dfrac{\sqrt{2}}{2}\cdot\dfrac{\sqrt{3}}{2} + \dfrac{\sqrt{2}}{2}\cdot\dfrac{1}{2} = \dfrac{\sqrt{6}+\sqrt{2}}{4}$.
+\end{mdframed}
+
+\begin{mdframed}[style=ejstyle]
+\textbf{Ejercicio resuelto 19.} Si $\cos\theta = 3/5$ y $\theta \in [0,\pi/2]$, calcula $\sen(2\theta)$ y $\cos(2\theta)$.
+
+\textit{Paso 1:} $\sen\theta = 4/5$ (Q\,I, positivo).
+
+\textit{Paso 2:} $\sen(2\theta) = 2\cdot\frac{4}{5}\cdot\frac{3}{5} = \frac{24}{25}$.
+
+\textit{Paso 3:} $\cos(2\theta) = \cos^2\theta - \sen^2\theta = \frac{9}{25} - \frac{16}{25} = -\frac{7}{25}$.
+\end{mdframed}
+
+\begin{mdframed}[style=ejstyle]
+\textbf{Ejercicio resuelto 20.} En el triángulo $ABC$: $A = 40°$, $B = 75°$, $b = 20$ cm. Encuentra $a$ y $c$.
+
+\textit{Paso 1:} $C = 180° - 40° - 75° = 65°$.
+
+\textit{Paso 2:} $a = 20\,\dfrac{\sen 40°}{\sen 75°} \approx \dfrac{20 \times 0.6428}{0.9659} \approx 13.30$ cm.
+
+\textit{Paso 3:} $c = 20\,\dfrac{\sen 65°}{\sen 75°} \approx \dfrac{20 \times 0.9063}{0.9659} \approx 18.77$ cm.
+\end{mdframed}
+
+\begin{mdframed}[style=ejstyle]
+\textbf{Ejercicio resuelto 21.} En un triángulo: $a = 7$, $b = 10$, $C = 60°$. Calcula $c$, $A$ y $B$.
+
+\textit{Paso 1:} $c^2 = 49 + 100 - 2(7)(10)(0.5) = 79 \Rightarrow c = \sqrt{79} \approx 8.888$.
+
+\textit{Paso 2:} $\sen A = 7\,\dfrac{\sen 60°}{\sqrt{79}} \approx 0.6812 \Rightarrow A \approx 42.95°$.
+
+\textit{Paso 3:} $B = 180° - 60° - 42.95° \approx 77.05°$.
+\end{mdframed}
+
+\begin{mdframed}[style=ejstyle]
+\textbf{Ejercicio resuelto 22.} Demuestra: $(\sec\theta - \tan\theta)(\sec\theta + \tan\theta) = 1$.
+
+\textit{Paso 1:} Expandir: $\sec^2\theta - \tan^2\theta$.
+
+\textit{Paso 2:} Por identidad pitagórica: $\sec^2\theta - \tan^2\theta = 1$. $\blacksquare$
+\end{mdframed}
+
+\begin{mdframed}[style=ejstyle]
+\textbf{Ejercicio resuelto 23.} Triángulo con $a=5$, $b=7$, $c=9$. Calcula los tres ángulos y el área.
+
+\textit{Paso 1:} $\cos A = (49+81-25)/126 = 105/126 \Rightarrow A \approx 33.56°$.
+
+\textit{Paso 2:} $\cos B = (25+81-49)/90 = 57/90 \Rightarrow B \approx 50.70°$.
+
+\textit{Paso 3:} $C \approx 95.74°$.
+
+\textit{Paso 4:} $s = 10.5$;\quad Herón: $\text{Área} = \sqrt{10.5(5.5)(3.5)(1.5)} \approx 17.41$ cm².
+\end{mdframed}
+
+\begin{mdframed}[style=ejstyle]
+\textbf{Ejercicio resuelto 24.} Demuestra: $\sen(3\theta) = 3\sen\theta - 4\sen^3\theta$.
+
+\textit{Paso 1:} $\sen(3\theta) = \sen(2\theta+\theta) = \sen(2\theta)\cos\theta + \cos(2\theta)\sen\theta$.
+
+\textit{Paso 2:} $= 2\sen\theta\cos^2\theta + (1-2\sen^2\theta)\sen\theta$.
+
+\textit{Paso 3:} $= 2\sen\theta(1-\sen^2\theta) + \sen\theta - 2\sen^3\theta = 3\sen\theta - 4\sen^3\theta$. $\blacksquare$
+\end{mdframed}
+
+## Ejercicios propuestos
+
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=4pt, start=31]
+\item Verifica la identidad: $(1 - \sen^2\theta)(1 + \tan^2\theta) = 1$.
+\item Demuestra: $(\sec\theta - \tan\theta)^2 = \dfrac{1-\sen\theta}{1+\sen\theta}$.
+\item Calcula $\cos(15°)$ exactamente usando la identidad de diferencia.
+\item Si $\sen\theta = 5/13$ y $\theta \in [\pi/2,\pi]$, calcula $\cos(2\theta)$ y $\sen(2\theta)$.
+\item Simplifica: $\dfrac{\sen(A+B)+\sen(A-B)}{\cos(A+B)+\cos(A-B)}$.
+\item Expresa $\cos(4\theta)$ en términos de $\cos\theta$ únicamente.
+\item Demuestra: $\sen^3\theta + \cos^3\theta = (\sen\theta+\cos\theta)(1-\sen\theta\cos\theta)$.
+\item En un triángulo: $a=9$, $b=12$, $A=35°$. Determina si hay 0, 1 o 2 triángulos posibles y resuélvelo(s).
+\item Un triángulo tiene lados 5, 7 y 9. Calcula sus tres ángulos con la Ley de Cosenos.
+\item Calcula el área del triángulo del ejercicio anterior con Herón y verifica con $\frac{1}{2}ab\sen C$.
+\item Demuestra que $\sen(A+B)\sen(A-B) = \sen^2 A - \sen^2 B$.
+\item Usa la fórmula de ángulo doble para calcular $\sen(2\arctan(3/4))$.
+\item Dos barcos parten del mismo puerto: el primero navega 30 km al N40°E y el segundo 50 km al S20°E. ¿A qué distancia están entre sí?
+\item \textbf{(Desafío)} Demuestra que $\tan(A/2) = (1-\cos A)/\sen A$ usando las fórmulas de ángulo mitad.
+\item \textbf{(Desafío)} En un triángulo isósceles de base $b$ y ángulo en el vértice $2\alpha$, expresa el área en función de $b$ y $\alpha$, y determina el valor de $\alpha$ que maximiza el área dado $b$ fija.
+\end{enumerate}
+
+\newpage
+
+# UNIDAD 4. Ecuaciones trigonométricas
+
+## Antecedentes
+
+a) Unidades 2 y 3 completas: funciones inversas e identidades trigonométricas.
+b) Resolución de ecuaciones algebraicas: lineales, cuadráticas y con fracciones.
+c) Concepto de solución general: conjunto de todas las soluciones en $\R$.
+d) Factorización: factor común, diferencia de cuadrados y trinomio cuadrado perfecto.
+
+## Reseña histórica
+
+Las ecuaciones trigonométricas aparecen históricamente en la astronomía: determinar cuándo un planeta alcanza cierta posición angular equivale a resolver una ecuación trigonométrica. **Viète** (1540–1603) fue el primero en usar métodos algebraicos sistemáticos; en particular, la ecuación $\cos(3\theta) = 4\cos^3\theta - 3\cos\theta$ le permitió resolver ecuaciones cúbicas mediante sustitución trigonométrica. La noción de **solución general** se formalizó con **Euler** y **Lagrange** en el siglo XVIII. Hoy son fundamentales en análisis de señales, mecánica vibratoria e ingeniería eléctrica.
+
+## Desarrollo temático
+
+### Conceptos fundamentales
+
+\begin{mdframed}[style=defstyle]
+\textbf{Nota: Definición — Ecuación trigonométrica.}
+Una ecuación trigonométrica es una igualdad que involucra funciones trigonométricas de una variable y que es verdadera solo para ciertos valores de esa variable (las soluciones), a diferencia de una identidad que es verdadera para todos los valores del dominio.
+\end{mdframed}
+
+\begin{mdframed}[style=defstyle]
+\textbf{Nota: Definición — Solución general.}
+Debido a la periodicidad, si $\theta_0$ es solución de $f(\theta) = k$, entonces $\theta_0 + nT$ también lo es para todo $n \in \Z$, donde $T$ es el periodo de $f$. El conjunto de todas estas soluciones es la \textbf{solución general}.
+\end{mdframed}
+
+\begin{mdframed}[style=defstyle]
+\textbf{Nota: Definición — Soluciones en un intervalo acotado.}
+Resolver en $[0,2\pi)$ significa encontrar únicamente las soluciones pertenecientes a ese intervalo. Se determina la solución general y luego se seleccionan los valores de $n$ que producen soluciones en el intervalo.
+\end{mdframed}
+
+### Métodos de resolución
+
+\begin{mdframed}[style=thmstyle]
+\textbf{Nota: Teorema — Solución general de ecuaciones básicas.}
+\begin{align*}
+\sen x = k &\Rightarrow x = \arcsen(k) + 2n\pi \quad \text{o} \quad x = \pi - \arcsen(k) + 2n\pi, \quad n \in \Z\\
+\cos x = k &\Rightarrow x = \pm\arccos(k) + 2n\pi, \quad n \in \Z\\
+\tan x = k &\Rightarrow x = \arctan(k) + n\pi, \quad n \in \Z
+\end{align*}
+\end{mdframed}
+
+```{r grafica-ecuacion, fig.cap="Soluciones de $\\sen x = k$ en $[0, 2\\pi)$: $x_1 = \\arcsen(k)$ y $x_2 = \\pi - \\arcsen(k)$, representadas como intersecciones de $y = \\sen x$ con la recta $y = k$.", fig.width=7.5, fig.height=3.5}
+k_val <- 0.5
+x_eq  <- seq(0, 2*pi, length.out=500)
+x1 <- asin(k_val); x2 <- pi - asin(k_val)
+
+ggplot(data.frame(x=x_eq, y=sin(x_eq)), aes(x,y)) +
+  geom_hline(yintercept=0, color="grey40", linewidth=0.4) +
+  geom_line(color="#2E5FA3", linewidth=1) +
+  geom_hline(yintercept=k_val, color="#C07A00", linetype="dashed", linewidth=0.8) +
+  geom_point(data=data.frame(x=c(x1,x2), y=c(k_val,k_val)),
+             aes(x,y), color="#C07A00", size=3.5) +
+  geom_segment(data=data.frame(x=c(x1,x2),xend=c(x1,x2),y=c(k_val,k_val),yend=c(0,0)),
+               aes(x=x,y=y,xend=xend,yend=yend),
+               color="#C07A00", linetype="dotted", linewidth=0.7) +
+  annotate("text", x=x1, y=-0.12, label=expression(x[1]), color="#C07A00", size=4) +
+  annotate("text", x=x2, y=-0.12, label=expression(x[2]), color="#C07A00", size=4) +
+  annotate("text", x=2*pi+0.05, y=k_val, label=paste0("k = ",k_val), hjust=0,
+           color="#C07A00", size=3.5) +
+  scale_x_continuous(
+    breaks=c(0,pi/2,pi,3*pi/2,2*pi),
+    labels=c("0","π/2","π","3π/2","2π")
+  ) +
+  scale_y_continuous(breaks=c(-1,0,k_val,1),
+                     labels=c("-1","0","k","1")) +
+  labs(x=NULL, y=NULL) +
+  theme_minimal(base_size=10) +
+  theme(panel.grid.minor=element_blank())
+```
+
+**Factorización:** llevar todo al segundo miembro y factorizar. Ejemplo: $2\sen x\cos x - \sen x = 0 \Rightarrow \sen x(2\cos x - 1) = 0$.
+
+**Con identidades:** homogeneizar en una sola función. Ejemplo: $\cos(2x) = \sen x \Rightarrow 1-2\sen^2 x = \sen x$.
+
+\begin{mdframed}[style=defstyle]
+\textbf{Nota: Definición — Ecuación cuadrática trigonométrica.}
+Una ecuación $au^2 + bu + c = 0$ donde $u = \sen x$, $\cos x$ o $\tan x$ se resuelve con la fórmula cuadrática para $u$, y luego se resuelve la ecuación básica, descartando $|u|>1$ para seno o coseno.
+\end{mdframed}
+
+### Ecuaciones con argumento múltiple
+
+\begin{mdframed}[style=thmstyle]
+\textbf{Nota: Teorema — Ecuaciones de la forma $\sen(nx) = k$.}
+\begin{enumerate}
+\item Hacer la sustitución $u = nx$.
+\item Encontrar todas las soluciones de $\sen u = k$ en $[0, 2n\pi)$.
+\item Dividir cada solución entre $n$. El número de soluciones en $[0,2\pi)$ es $2n$ (para $|k|<1$).
+\end{enumerate}
+\end{mdframed}
+
+### Problemas de aplicación
+
+El modelo $y(t) = A\,\sen(\omega t + \varphi) + D$ describe el movimiento armónico simple. Para encontrar instantes en que $y(t) = y_0$, se plantea y resuelve la ecuación trigonométrica resultante. En contextos físicos, solo se conservan las soluciones con significado práctico (por ejemplo, $t \geq 0$).
+
+## Ejercicios resueltos
+
+\begin{mdframed}[style=ejstyle]
+\textbf{Ejercicio resuelto 25.} Resuelve $\sen x = \sqrt{3}/2$ en $[0,2\pi)$ y escribe la solución general.
+
+\textit{Paso 1:} $\arcsen(\sqrt{3}/2) = \pi/3$.
+
+\textit{Paso 2:} En $[0,2\pi)$: $x_1 = \pi/3$ (Q\,I) y $x_2 = \pi - \pi/3 = 2\pi/3$ (Q\,II).
+
+\textit{Solución general:} $x = \pi/3 + 2n\pi$ o $x = 2\pi/3 + 2n\pi$, $n \in \Z$.
+\end{mdframed}
+
+\begin{mdframed}[style=ejstyle]
+\textbf{Ejercicio resuelto 26.} Resuelve $2\cos^2 x - \cos x - 1 = 0$ en $[0,2\pi)$.
+
+\textit{Paso 1:} $u = \cos x$: $(2u+1)(u-1)=0 \Rightarrow u=-1/2$ o $u=1$.
+
+\textit{Paso 2:} $\cos x = -1/2 \Rightarrow x = 2\pi/3,\;4\pi/3$.
+
+\textit{Paso 3:} $\cos x = 1 \Rightarrow x = 0$.
+
+\textit{Soluciones:} $x \in \{0,\;2\pi/3,\;4\pi/3\}$.
+\end{mdframed}
+
+\begin{mdframed}[style=ejstyle]
+\textbf{Ejercicio resuelto 27.} Resuelve $\sen x\cos x = 1/4$ en $[0,2\pi)$.
+
+\textit{Paso 1:} $2\sen x\cos x = 1/2 \Rightarrow \sen(2x) = 1/2$.
+
+\textit{Paso 2:} $u=2x \in [0,4\pi)$: $u = \pi/6,\;5\pi/6,\;13\pi/6,\;17\pi/6$.
+
+\textit{Paso 3:} $x = \pi/12,\;5\pi/12,\;13\pi/12,\;17\pi/12$.
+\end{mdframed}
+
+\begin{mdframed}[style=ejstyle]
+\textbf{Ejercicio resuelto 28.} Resuelve $\cos(2x) - \cos x = 0$ en $[0,2\pi)$.
+
+\textit{Paso 1:} $2\cos^2 x - 1 - \cos x = 0 \Rightarrow (2\cos x+1)(\cos x-1)=0$.
+
+\textit{Paso 2:} $\cos x = -1/2 \Rightarrow x = 2\pi/3,\;4\pi/3$;\quad $\cos x = 1 \Rightarrow x = 0$.
+
+\textit{Soluciones:} $x \in \{0,\;2\pi/3,\;4\pi/3\}$.
+\end{mdframed}
+
+\begin{mdframed}[style=ejstyle]
+\textbf{Ejercicio resuelto 29.} Resuelve $\sen(3x) = 1/2$ en $[0,2\pi)$.
+
+\textit{Paso 1:} $u=3x \in [0,6\pi)$. $\sen u = 1/2 \Rightarrow u = \pi/6+2k\pi$ o $5\pi/6+2k\pi$, $k=0,1,2$.
+
+\textit{Paso 2:} Seis soluciones: $x = \pi/18,\;5\pi/18,\;13\pi/18,\;17\pi/18,\;25\pi/18,\;29\pi/18$.
+\end{mdframed}
+
+\begin{mdframed}[style=ejstyle]
+\textbf{Ejercicio resuelto 30.} La temperatura sigue $T(t) = 10\sen(\pi t/12 - \pi/2) + 20$, $t \in [0,24)$. ¿A qué horas $T = 25°$C?
+
+\textit{Paso 1:} $10\sen(\pi t/12 - \pi/2) = 5 \Rightarrow \sen(\pi t/12 - \pi/2) = 1/2$.
+
+\textit{Paso 2:} $u = \pi t/12 - \pi/2$; $u = \pi/6 \Rightarrow t = 8$ h; $u = 5\pi/6 \Rightarrow t = 16$ h.
+
+\textit{Respuesta:} $T = 25°$C a las 8:00 y a las 16:00.
+\end{mdframed}
+
+\begin{mdframed}[style=ejstyle]
+\textbf{Ejercicio resuelto 31.} Resuelve $2\sen^2 x + 3\sen x - 2 = 0$ en $[0,2\pi)$.
+
+\textit{Paso 1:} $(2\sen x - 1)(\sen x + 2) = 0 \Rightarrow \sen x = 1/2$ o $\sen x = -2$.
+
+\textit{Paso 2:} $\sen x = -2$ no tiene solución real.
+
+\textit{Paso 3:} $\sen x = 1/2 \Rightarrow x = \pi/6,\;5\pi/6$.
+\end{mdframed}
+
+\begin{mdframed}[style=ejstyle]
+\textbf{Ejercicio resuelto 32.} Resuelve $\tan x + \cot x = 2\csc x$ en $[0,2\pi)$.
+
+\textit{Paso 1:} $\dfrac{\sen x}{\cos x} + \dfrac{\cos x}{\sen x} = \dfrac{2}{\sen x}$.
+
+\textit{Paso 2:} Multiplicar por $\sen x\cos x$: $\sen^2 x + \cos^2 x = 2\cos x \Rightarrow 1 = 2\cos x \Rightarrow \cos x = 1/2$.
+
+\textit{Paso 3:} $x = \pi/3$ y $x = 5\pi/3$ (verificar que $\sen x \neq 0$: $\checkmark$).
+\end{mdframed}
+
+## Ejercicios propuestos
+
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=4pt, start=46]
+\item Resuelve $\cos x = 1/2$ en $[0,2\pi)$ y escribe la solución general.
+\item Resuelve $\tan x = -1$ en $[0,2\pi)$.
+\item Resuelve $2\sen x - \sqrt{3} = 0$ en $[0,2\pi)$.
+\item Resuelve $\sen x(\sen x - 1) = 0$ en $[0,2\pi)$.
+\item Resuelve $2\cos^2 x + \cos x = 0$ en $[0,2\pi)$.
+\item Resuelve $\sen(2x) = \cos x$ en $[0,2\pi)$.
+\item Resuelve $\cos(2x) + 3\cos x - 1 = 0$ en $[0,2\pi)$.
+\item Resuelve $\tan^2 x - 3 = 0$ en $[0,2\pi)$ y escribe la solución general.
+\item Resuelve $\sen(3x) = \sqrt{3}/2$ en $[0,2\pi)$. ¿Cuántas soluciones hay?
+\item Resuelve $\cos(x/2) = \sen x$ en $[0,2\pi)$.
+\item Resuelve $2\sen x\cos x = \sqrt{3}/2$ en $[0,2\pi)$.
+\item Resuelve $\sen^2 x - 3\sen x\cos x + 2\cos^2 x = 0$ en $[0,2\pi)$.
+\item \textbf{(Desafío)} Una ola marina tiene la forma $h(t) = 3\sen(\pi t/6)$ metros, $t$ en horas, $0 \leq t < 24$. ¿En qué momentos $h = 1.5$ m?
+\item \textbf{(Desafío)} Una señal de CA tiene la forma $i(t) = 5\sen(120\pi t - \pi/4)$ A. Determina los primeros tres instantes positivos en que $i = 2.5$ A.
+\item \textbf{(Desafío)} Demuestra que $\sen x + \cos x = k$ tiene soluciones reales si y solo si $|k| \leq \sqrt{2}$, y calcula la solución general cuando $k = \sqrt{2}$.
+\end{enumerate}
+
+\newpage
+
+# ANEXO — Formulario de Trigonometría
+
+```{r formulario-setup, include=FALSE}
+# Configuración para el formulario
+options(knitr.kable.NA = "—")
+```
+
+## Ángulos notables — Tabla completa
+
+```{r tabla-completa, echo=FALSE}
+ang_full <- data.frame(
+  `θ (°)` = c("0°","30°","45°","60°","90°","120°","135°","150°",
+               "180°","210°","225°","240°","270°","300°","315°","330°","360°"),
+  `θ (rad)` = c("0","π/6","π/4","π/3","π/2","2π/3","3π/4","5π/6",
+                "π","7π/6","5π/4","4π/3","3π/2","5π/3","7π/4","11π/6","2π"),
+  `sen θ` = c("0","1/2","√2/2","√3/2","1","√3/2","√2/2","1/2",
+              "0","−1/2","−√2/2","−√3/2","−1","−√3/2","−√2/2","−1/2","0"),
+  `cos θ` = c("1","√3/2","√2/2","1/2","0","−1/2","−√2/2","−√3/2",
+              "−1","−√3/2","−√2/2","−1/2","0","1/2","√2/2","√3/2","1"),
+  `tan θ` = c("0","√3/3","1","√3","—","−√3","−1","−√3/3",
+              "0","√3/3","1","√3","—","−√3","−1","−√3/3","0"),
+  `cot θ` = c("—","√3","1","√3/3","0","−√3/3","−1","−√3",
+              "—","√3","1","√3/3","0","−√3/3","−1","−√3","—"),
+  `sec θ` = c("1","2√3/3","√2","2","—","−2","−√2","−2√3/3",
+              "−1","−2√3/3","−√2","−2","—","2","√2","2√3/3","1"),
+  `csc θ` = c("—","2","√2","2√3/3","1","2√3/3","√2","2",
+              "—","−2","−√2","−2√3/3","−1","−2√3/3","−√2","−2","—"),
+  check.names = FALSE
+)
+
+kable(ang_full, booktabs=TRUE, longtable=TRUE, align="c",
+      caption="Valores exactos de las seis funciones trigonométricas para todos los ángulos notables") |>
+  kable_styling(latex_options=c("striped","repeat_header","hold_position"),
+                font_size=8, full_width=TRUE) |>
+  row_spec(0, bold=TRUE, color="white", background="#2E5FA3") |>
+  column_spec(1:2, bold=TRUE)
+```
+
+## Círculo unitario
+
+```{r circulo-anexo, fig.cap="Círculo unitario: ángulos notables en grados y radianes, coordenadas $(\\cos\\theta,\\,\\sen\\theta)$ y cuadrantes.", fig.width=6.5, fig.height=6.5}
+theta_all <- seq(0, 330, by=30) * pi/180
+deg_lbl   <- c("0°","30°","45°","60°","90°","120°","135°","150°",
+               "180°","210°","225°","240°","270°","300°","315°","330°")
+rad_lbl   <- c("0","π/6","π/4","π/3","π/2","2π/3","3π/4","5π/6",
+               "π","7π/6","5π/4","4π/3","3π/2","5π/3","7π/4","11π/6")
+
+theta_16 <- c(0,30,45,60,90,120,135,150,180,210,225,240,270,300,315,330)*pi/180
+cols_16  <- c(rep("#2E5FA3",4),"#2E5FA3",rep("#C07A00",4),
+              rep("#555555",4),rep("#7B4F9E",3))
+
+pts16 <- data.frame(
+  x   = cos(theta_16),
+  y   = sin(theta_16),
+  lbl = paste0(deg_lbl, "\n", rad_lbl),
+  col = cols_16
+)
+
+circ2 <- data.frame(x=cos(seq(0,2*pi,0.005)), y=sin(seq(0,2*pi,0.005)))
+
+ggplot() +
+  geom_polygon(data=data.frame(x=c(0,cos(seq(0,pi/2,0.01)),0),
+                               y=c(0,sin(seq(0,pi/2,0.01)),0)),
+               aes(x,y), fill="#EBF3FB", alpha=0.55) +
+  geom_polygon(data=data.frame(x=c(0,cos(seq(pi/2,pi,0.01)),0),
+                               y=c(0,sin(seq(pi/2,pi,0.01)),0)),
+               aes(x,y), fill="#FFF8E7", alpha=0.55) +
+  geom_polygon(data=data.frame(x=c(0,cos(seq(pi,3*pi/2,0.01)),0),
+                               y=c(0,sin(seq(pi,3*pi/2,0.01)),0)),
+               aes(x,y), fill="#F0F0F0", alpha=0.55) +
+  geom_polygon(data=data.frame(x=c(0,cos(seq(3*pi/2,2*pi,0.01)),0),
+                               y=c(0,sin(seq(3*pi/2,2*pi,0.01)),0)),
+               aes(x,y), fill="#F5F0FF", alpha=0.55) +
+  geom_path(data=circ2, aes(x,y), color="#2E5FA3", linewidth=1) +
+  geom_hline(yintercept=0, color="grey40", linewidth=0.5) +
+  geom_vline(xintercept=0, color="grey40", linewidth=0.5) +
+  geom_segment(data=pts16, aes(x=0,y=0,xend=x*.98,yend=y*.98),
+               color="grey75", linewidth=0.35) +
+  geom_point(data=pts16, aes(x,y), color=pts16$col, size=2.5) +
+  geom_text(data=pts16, aes(x*1.30, y*1.30, label=lbl),
+            size=2.0, color=pts16$col, lineheight=0.85, fontface="bold") +
+  annotate("text",x= 0.55,y= 0.50,label="Q I",  color="#2E5FA3",size=3.5,fontface="bold") +
+  annotate("text",x=-0.55,y= 0.50,label="Q II", color="#C07A00",size=3.5,fontface="bold") +
+  annotate("text",x=-0.55,y=-0.50,label="Q III",color="#555555",size=3.5,fontface="bold") +
+  annotate("text",x= 0.55,y=-0.50,label="Q IV", color="#7B4F9E",size=3.5,fontface="bold") +
+  annotate("text",x=0,y=0,label="O",size=3,color="grey30") +
+  coord_equal(xlim=c(-1.70,1.70), ylim=c(-1.70,1.70)) +
+  labs(x=NULL, y=NULL) +
+  theme_minimal(base_size=9) +
+  theme(panel.grid=element_blank(),
+        axis.text=element_blank(),
+        axis.ticks=element_blank())
+```
+
+## Identidades fundamentales
+
+| Reciprocidad | Cociente | Pitagóricas |
+|:---:|:---:|:---:|
+| $\csc\theta = \dfrac{1}{\sen\theta}$ | $\tan\theta = \dfrac{\sen\theta}{\cos\theta}$ | $\sen^2\theta + \cos^2\theta = 1$ |
+| $\sec\theta = \dfrac{1}{\cos\theta}$ | $\cot\theta = \dfrac{\cos\theta}{\sen\theta}$ | $1 + \tan^2\theta = \sec^2\theta$ |
+| $\cot\theta = \dfrac{1}{\tan\theta}$ | | $1 + \cot^2\theta = \csc^2\theta$ |
+
+## Identidades de suma y diferencia
+
+$$\sen(A \pm B) = \sen A\cos B \pm \cos A\sen B$$
+$$\cos(A \pm B) = \cos A\cos B \mp \sen A\sen B$$
+$$\tan(A \pm B) = \frac{\tan A \pm \tan B}{1 \mp \tan A\tan B}$$
+
+## Identidades de ángulo doble
+
+$$\sen(2A) = 2\sen A\cos A$$
+$$\cos(2A) = \cos^2 A - \sen^2 A = 2\cos^2 A - 1 = 1 - 2\sen^2 A$$
+$$\tan(2A) = \frac{2\tan A}{1 - \tan^2 A}$$
+
+## Identidades de ángulo mitad
+
+$$\sen\!\left(\frac{A}{2}\right) = \pm\sqrt{\frac{1-\cos A}{2}}, \qquad \cos\!\left(\frac{A}{2}\right) = \pm\sqrt{\frac{1+\cos A}{2}}$$
+$$\tan\!\left(\frac{A}{2}\right) = \frac{1-\cos A}{\sen A} = \frac{\sen A}{1+\cos A}$$
+
+*El signo de $\sen(A/2)$ y $\cos(A/2)$ depende del cuadrante de $A/2$.*
+
+## Identidades de producto a suma y suma a producto
+
+$$2\sen A\cos B = \sen(A+B)+\sen(A-B), \qquad 2\cos A\cos B = \cos(A-B)+\cos(A+B)$$
+$$2\sen A\sen B = \cos(A-B)-\cos(A+B), \qquad 2\cos A\sen B = \sen(A+B)-\sen(A-B)$$
+
+$$\sen P + \sen Q = 2\sen\tfrac{P+Q}{2}\cos\tfrac{P-Q}{2}, \qquad \cos P + \cos Q = 2\cos\tfrac{P+Q}{2}\cos\tfrac{P-Q}{2}$$
+$$\sen P - \sen Q = 2\cos\tfrac{P+Q}{2}\sen\tfrac{P-Q}{2}, \qquad \cos P - \cos Q = -2\sen\tfrac{P+Q}{2}\sen\tfrac{P-Q}{2}$$
+
+## Signos por cuadrante e identidades de reducción
+
+```{r tabla-signos, echo=FALSE}
+sign_df <- data.frame(
+  `Función` = c("sen θ","cos θ","tan θ","cot θ","sec θ","csc θ"),
+  `Q I`     = c("+","+","+","+","+","+"),
+  `Q II`    = c("+","−","−","−","−","+"),
+  `Q III`   = c("−","−","+","+","−","−"),
+  `Q IV`    = c("−","+","−","−","+","−"),
+  `π/2 ± θ` = c("cos θ","∓ sen θ","∓ cot θ","∓ tan θ","∓ csc θ","± sec θ"),
+  `π ± θ`   = c("∓ sen θ","− cos θ","± tan θ","± cot θ","− sec θ","∓ csc θ"),
+  check.names = FALSE
+)
+
+kable(sign_df, booktabs=TRUE, align="c",
+      caption="Signos de las funciones trigonométricas por cuadrante e identidades de reducción") |>
+  kable_styling(latex_options=c("striped","hold_position"), font_size=9) |>
+  row_spec(0, bold=TRUE, color="white", background="#2E5FA3") |>
+  column_spec(1, bold=TRUE)
+```
+
+## Leyes del triángulo
+
+$$\textbf{Ley de Senos:}\quad \frac{a}{\sen A} = \frac{b}{\sen B} = \frac{c}{\sen C}$$
+
+$$\textbf{Ley de Cosenos:}\quad a^2 = b^2 + c^2 - 2bc\cos A$$
+
+$$\textbf{Área:}\quad \mathcal{A} = \tfrac{1}{2}ab\sen C = \tfrac{1}{2}ac\sen B = \tfrac{1}{2}bc\sen A$$
+
+$$\textbf{Herón:}\quad \mathcal{A} = \sqrt{s(s-a)(s-b)(s-c)}, \qquad s = \frac{a+b+c}{2}$$
+
+## Funciones trigonométricas inversas
+
+```{r tabla-inversas, echo=FALSE}
+inv_df <- data.frame(
+  Función     = c("arcsen x","arccos x","arctan x"),
+  Dominio     = c("$[-1,\\,1]$","$[-1,\\,1]$","$\\mathbb{R}$"),
+  Rango       = c("$[-\\pi/2,\\,\\pi/2]$","$[0,\\,\\pi]$","$(-\\pi/2,\\,\\pi/2)$"),
+  Cancelación = c("$\\sen(\\arcsen x)=x$;\\ $\\arcsen(\\sen x)=x$ si $x\\in[-\\pi/2,\\pi/2]$",
+                  "$\\cos(\\arccos x)=x$;\\ $\\arccos(\\cos x)=x$ si $x\\in[0,\\pi]$",
+                  "$\\tan(\\arctan x)=x$;\\ $\\arctan(\\tan x)=x$ si $x\\in(-\\pi/2,\\pi/2)$")
+)
+kable(inv_df, booktabs=TRUE, escape=FALSE, align=c("l","c","c","l"),
+      caption="Funciones trigonométricas inversas: dominio, rango e identidades de cancelación") |>
+  kable_styling(latex_options=c("striped","hold_position"), font_size=9) |>
+  row_spec(0, bold=TRUE, color="white", background="#2E5FA3") |>
+  column_spec(1, bold=TRUE)
+```
+
+**Identidad complementaria:** $\arcsen x + \arccos x = \dfrac{\pi}{2}$ para todo $x \in [-1,1]$.
+
+## Forma general de las funciones sinusoidales
+
+$$y = A\,\sen(Bx + C) + D \qquad \text{y} \qquad y = A\,\cos(Bx + C) + D$$
+
+| Parámetro | Significado | Fórmula |
+|:---------:|:-----------|:-------:|
+| $\|A\|$ | Amplitud (semirango) | $\text{máx} - D = D - \text{mín}$ |
+| $T$ | Periodo | $T = 2\pi/\|B\|$ |
+| $-C/B$ | Desfasamiento horizontal | $>0$: desplaza a la derecha |
+| $D$ | Desplazamiento vertical | Eje de simetría de la oscilación |
+
+La función oscila entre $D - |A|$ y $D + |A|$.
+
+## Conversión de unidades angulares y fórmulas de arco
+
+$$\alpha[\text{rad}] = \alpha[°] \times \frac{\pi}{180} \qquad\qquad \alpha[°] = \alpha[\text{rad}] \times \frac{180}{\pi}$$
+
+$$L = r\,\theta \quad (\theta \text{ en rad}) \qquad A_{\text{sector}} = \frac{r^2\,\theta}{2} \qquad \omega = \frac{\theta}{t} \quad [\text{rad/s}] \qquad v = r\,\omega \quad [\text{m/s}]$$
+
+```{r tabla-conversion, echo=FALSE}
+conv_df <- data.frame(
+  `Grados`   = c("0°","30°","45°","60°","90°","120°","135°","150°","180°","270°","360°"),
+  `Radianes` = c("0","π/6","π/4","π/3","π/2","2π/3","3π/4","5π/6","π","3π/2","2π"),
+  `Decimal (rad)` = c("0.000","0.524","0.785","1.047","1.571","2.094","2.356","2.618","3.142","4.712","6.283"),
+  check.names = FALSE
+)
+kable(conv_df, booktabs=TRUE, align="c",
+      caption="Equivalencias entre grados y radianes para los ángulos más comunes") |>
+  kable_styling(latex_options=c("striped","hold_position"), font_size=9) |>
+  row_spec(0, bold=TRUE, color="white", background="#2E5FA3")
+```
+
+\newpage
+
+# Referencias bibliográficas
+
+## Acervos básicos
+
+- Swokowski, E. W. (2009). *Álgebra y trigonometría con geometría analítica*. Cengage Learning.
+
+- Lamas Huizar, V. M. (2002). *Álgebra y trigonometría*. Editorial Patria.
+
+- Larson, R., y Hostetler, R. P. (2013). *Precálculo* (8.ª ed.). Cengage Learning.
+
+## Acervos complementarios
+
+- Silva, V. A., Sánchez, M. A. V., Bello, E. V., & Snell, A. R. (1999). *Geometría y trigonometría*. McGraw-Hill.
+
+- GeoGebra Materials. (s.f.). *Interactive trigonometry resources*. GeoGebra. <https://www.geogebra.org>
+
+- Stewart, J., Redlin, L., & Watson, S. (2016). *Precálculo: Matemáticas para el cálculo* (7.ª ed.). Cengage Learning.
+
+- Simmons, G. F. (2007). *Cálculo con geometría analítica* (2.ª ed.). McGraw-Hill.
+
+## Recursos de R y reproducibilidad
+
+- R Core Team (2024). *R: A Language and Environment for Statistical Computing*. R Foundation for Statistical Computing. <https://www.R-project.org/>
+
+- Xie, Y., Allaire, J. J., & Grolemund, G. (2018). *R Markdown: The Definitive Guide*. Chapman and Hall/CRC. <https://bookdown.org/yihui/rmarkdown/>
+
+- Wickham, H., et al. (2019). *Welcome to the tidyverse*. Journal of Open Source Software, 4(43), 1686. <https://doi.org/10.21105/joss.01686>

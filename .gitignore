@@ -1,0 +1,25 @@
+# Dependencias
+node_modules/
+
+# Build
+dist/
+
+# Claves y certificados
+*.jks
+*.keystore
+
+# Capacitor Android
+android/
+
+# Editor
+.idea/
+.vscode/
+*.DS_Store
+
+# Vercel config local
+.vercel/
+
+# Logs
+*.log
+
+.vercel
