@@ -26,4 +26,9 @@ npm run dev
 ---
 
 ## 📄 Licencia y Créditos
-Universidad Autónoma de Nayarit © 2026.
+
+Desarrollado en la **Universidad Autónoma de Nayarit** (UAN).  
+Investigación Docente en Tecnología Educativa.  
+Programa Académico de Licenciatura en Matemáticas.  
+Unidad Académica de Ciencias Básicas e Ingenierías.  
+Todos los derechos reservados © 2026.
