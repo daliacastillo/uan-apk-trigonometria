@@ -1,6 +1,6 @@
 # 📱 Trigonometría — UAN
 
-[![Ver Web App](https://img.shields.io/badge/Ver-Web%20App%20en%20Vivo-blue?style=for-the-badge&logo=githubpages)](https://PabloeCancino.github.io/uan-apk-trigonometria/)
+[![Ver Web App](https://img.shields.io/badge/Ver-Web%20App%20en%20Vivo-blue?style=for-the-badge&logo=githubpages)](https://daliacastillo.github.io/uan-apk-trigonometria/)
 [![Norma](https://img.shields.io/badge/Norma-NTE--UAN--APK--001%20v1.3-purple?style=for-the-badge)](https://github.com/PabloeCancino/uan-apk-plantilla-arquetipo)
 
 Aplicación educativa e interactiva para el estudio de la **Trigonometría** (funciones trigonométricas, identidades, triángulo rectángulo y razones en el círculo unitario), desarrollada bajo la norma **NTE-UAN-APK-001 v1.3** de la **Universidad Autónoma de Nayarit**.
